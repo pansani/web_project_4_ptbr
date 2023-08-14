@@ -1,0 +1,11 @@
+.profile__square{
+    width: 24px;
+    height: 24px;
+    border: 1px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 400px;
+    top: 15px;
+}
