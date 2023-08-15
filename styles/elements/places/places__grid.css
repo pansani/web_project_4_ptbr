@@ -1,0 +1,9 @@
+.places__grid {
+    width: 880px;
+    height: 743px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 10px; 
+    margin: 0 auto;
+}
