@@ -14,4 +14,4 @@ Um projeto desenvolvivo com JavaScript visando o treinamento de manipulaçao do 
 
 **Link para o Github Pages**
 
-(https://pansani.github.io/web_project_4_ptbr/)
+https://pansani.github.io/web_project_4_ptbr/
