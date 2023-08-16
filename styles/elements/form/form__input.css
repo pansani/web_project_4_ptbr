@@ -1,0 +1,12 @@
+.form__input{
+    width: 358px;
+    height: 27px;
+    margin-bottom: 25px;
+    margin-left: 30px;
+    border: 0px;
+    border-bottom: 1px solid black;
+}
+
+.form__input:active{
+    outline: none;
+}

@@ -9,3 +9,8 @@
     left: 400px;
     top: 15px;
 }
+
+.profile__square:hover{
+    cursor: pointer;
+    border: 1px solid #545454;
+}

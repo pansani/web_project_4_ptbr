@@ -19,6 +19,14 @@
 @import url("./elements/places/places__like-button.css");
 @import url("./modifers/places/places__container_name.css");
 
+@import url("./elements/form/form__container.css");
+@import url("./elements/form/form__close-button.css");
+@import url("./elements/form/form__input.css");
+@import url("./elements/form/form__title.css");
+@import url("./modifers/form/form__container_active.css");
+@import url("./modifers/form/form__input_submit.css");
+@import url("./modifers/form/form__close-button_active.css");
+
 *{
     margin: 0;
     padding: 0;
@@ -30,3 +38,20 @@ html{
     background-color: #000;
     color: #fff;
 }
+
+body{
+    position: relative;
+}
+
+.overlay{
+    background-color: #000;
+    opacity: 100%;
+}
+
+.overlay__active{
+    background-color: #000;
+    opacity: 50%;
+}
+
+
+

@@ -1,0 +1,11 @@
+.form__input_submit{
+    margin-top: 15px;
+    border: 0;
+    height: 50px;
+    background-color: #000;
+    color: #FFF;
+}
+
+.form__input_submit:hover{
+    background-color: #545454;
+}
