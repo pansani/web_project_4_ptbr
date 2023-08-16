@@ -1,16 +1,17 @@
 # Projeto 5:  EUA Afora
 
-### Visão geral
+### Tecnologias Utilizadas
+* JavaScript
+* HTML
+* CSS
 
-* Figma
-* Imagens
+**Visao Geral**
+Um projeto desenvolvivo com JavaScript visando o treinamento de manipulaçao do DOM.
 
 **Figma**
 
 * [Link para o projeto no Figma](https://www.figma.com/file/XfB6BSINvliub43JgKza1e/WEB.-Sprint-4.-Around-The-U.S.-desktop-%2B-mobile-pt)
 
-**Imagens**
+**Link para o Github Pages**
 
-A maneira como você fará isso no trabalho é exportando imagens diretamente do Figma — recomendamos fazer isso para praticar mais. Não se esqueça de otimizá-los [aqui](https://tinypng.com/), para que seu projeto carregue mais rápido.
-
-Divirta-se com JavaScript!
+(https://pansani.github.io/web_project_4_ptbr/)
