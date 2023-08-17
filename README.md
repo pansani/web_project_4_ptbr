@@ -6,6 +6,7 @@
 * CSS
 
 **Visao Geral**
+
 Um projeto desenvolvivo com JavaScript visando o treinamento de manipulaçao do DOM.
 
 **Figma**
