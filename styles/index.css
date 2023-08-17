@@ -9,6 +9,7 @@
 @import url("./elements/profile/profile__rectangle.css");
 @import url("./elements/profile/profile__content.css");
 @import url("./elements/profile/profile__name.css");
+@import url("./elements/profile/profile__image.css");
 @import url("./elements/profile/profile__subtitle.css");
 
 @import url("./blocks/places/places.css");
@@ -26,6 +27,9 @@
 @import url("./modifers/form/form__container_active.css");
 @import url("./modifers/form/form__input_submit.css");
 @import url("./modifers/form/form__close-button_active.css");
+
+@import url("./blocks/footer/footer.css");
+@import url("./elements/footer/footer__content.css");
 
 *{
     margin: 0;

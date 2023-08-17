@@ -8,4 +8,7 @@
     border-radius: 0px 0px 10px 10px;
     padding-left: 20px;
     position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
