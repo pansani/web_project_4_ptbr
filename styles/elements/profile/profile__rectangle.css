@@ -8,11 +8,15 @@
     position: absolute;
     right: 0;
     top: 35px;
+    background-image: url("/styles/assets/add-button.png");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .profile__rectangle:hover{
     cursor: pointer;
     border: 1px solid #545454;
+    background-image: url("/styles/assets/add-button_active.png");
 }
 
 @media only screen and (min-width: 320px) and (max-width: 760px){
