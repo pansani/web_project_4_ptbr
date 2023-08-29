@@ -1,0 +1,16 @@
+/** @format */
+
+.form-places__close_active {
+  position: absolute;
+  top: 7%;
+  right: 29%;
+  display: block;
+  font-weight: 100;
+  transform: rotate(45deg);
+  font-size: 75px;
+}
+
+.form-places__close_active:hover {
+  cursor: pointer;
+  color: #545454;
+}

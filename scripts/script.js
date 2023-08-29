@@ -9,58 +9,12 @@ const inputSubtitle = document.querySelector(".form__input_subtitle");
 const inputSubmit = document.querySelector(".form__input_submit");
 const profileName = document.querySelector(".profile__name");
 const profileSubtitle = document.querySelector(".profile__subtitle");
-const likeButton = document.querySelector(".places__like-button");
-
-const formTrue = () => {
-  form.classList.remove("form__container");
-  form.classList.add("form__container_active");
-};
-buttonChangeHandler.addEventListener("click", formTrue);
-
-const closeButtonTrue = () => {
-  closeButton.classList.remove("form__close-button");
-  closeButton.classList.add("form__close-button_active");
-};
-buttonChangeHandler.addEventListener("click", closeButtonTrue);
-
-const overlayTrue = () => {
-  overlay.classList.remove("overlay");
-  overlay.classList.add("overlay__active");
-};
-buttonChangeHandler.addEventListener("click", overlayTrue);
-
-const formFalse = () => {
-  form.classList.remove("form__container_active");
-  form.classList.add("form__container");
-};
-
-const closeButtonFalse = () => {
-  closeButton.classList.remove("form__close-button_active");
-  closeButton.classList.add("form__close-button");
-};
-
-const overlayFalse = () => {
-  overlay.classList.remove("overlay__active");
-  overlay.classList.add("overlay");
-};
-
-closeButton.addEventListener("click", overlayFalse);
-closeButton.addEventListener("click", formFalse);
-closeButton.addEventListener("click", closeButtonFalse);
-
-const handleProfileSubmit = (evt) => {
-  evt.preventDefault();
-
-  const inputNameValue = inputName.value;
-  const inputSubtitleValue = inputSubtitle.value;
-
-  profileName.textContent = inputNameValue;
-  profileSubtitle.textContent = inputSubtitleValue;
-};
-inputSubmit.addEventListener("click", handleProfileSubmit);
-inputSubmit.addEventListener("click", overlayFalse);
-inputSubmit.addEventListener("click", formFalse);
-inputSubmit.addEventListener("click", closeButtonFalse);
+const rectangleAdd = document.querySelector(".profile__rectangle");
+const formAdd = document.querySelector(".form-places__container");
+const formClose = document.querySelector(".form-places__close");
+const inputTitle = document.querySelector(".form-places__input_title");
+const inputUrl = document.querySelector(".form-places__input_url");
+const placesSubmit = document.querySelector(".form-places__submit");
 
 const initialCards = [
   {
@@ -100,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
     imageElement.src = card.link;
     imageElement.alt = card.name;
     imageElement.classList.add("places__image");
-    8;
 
     const nameContainer = document.createElement("div");
     nameContainer.classList.add("places__container_name");
@@ -111,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const likeImage = document.createElement("img");
     likeImage.classList.add("places__like-button");
-    likeImage.src = "../styles/assets/like_button.svg";
+    likeImage.src = "./styles/assets/like_button.svg";
 
     cardElement.appendChild(imageElement);
     cardElement.appendChild(nameContainer);
@@ -120,4 +73,111 @@ document.addEventListener("DOMContentLoaded", function () {
 
     placesContainer.appendChild(cardElement);
   });
+
+  const likeButtons = document.querySelectorAll(".places__like-button");
+  likeButtons.forEach((likeImage) => {
+    likeImage.addEventListener("click", function () {
+      if (likeImage.src.includes("like_button.svg")) {
+        likeImage.src = "./styles/assets/like_button__active.svg";
+      } else {
+        likeImage.src = "./styles/assets/like_button.svg";
+      }
+    });
+  });
 });
+
+const formTrue = () => {
+  form.classList.remove("form__container");
+  form.classList.add("form__container_active");
+};
+buttonChangeHandler.addEventListener("click", formTrue);
+
+const formFalse = () => {
+  form.classList.remove("form__container_active");
+  form.classList.add("form__container");
+};
+
+const closeButtonTrue = () => {
+  closeButton.classList.remove("form__close-button");
+  closeButton.classList.add("form__close-button_active");
+};
+buttonChangeHandler.addEventListener("click", closeButtonTrue);
+
+const closeButtonFalse = () => {
+  closeButton.classList.remove("form__close-button_active");
+  closeButton.classList.add("form__close-button");
+};
+
+const overlayTrue = () => {
+  overlay.classList.remove("overlay");
+  overlay.classList.add("overlay__active");
+};
+buttonChangeHandler.addEventListener("click", overlayTrue);
+
+const overlayFalse = () => {
+  overlay.classList.remove("overlay__active");
+  overlay.classList.add("overlay");
+};
+
+closeButton.addEventListener("click", overlayFalse);
+closeButton.addEventListener("click", formFalse);
+closeButton.addEventListener("click", closeButtonFalse);
+
+const handleProfileSubmit = (evt) => {
+  evt.preventDefault();
+
+  const inputNameValue = inputName.value;
+  const inputSubtitleValue = inputSubtitle.value;
+
+  profileName.textContent = inputNameValue;
+  profileSubtitle.textContent = inputSubtitleValue;
+};
+inputSubmit.addEventListener("click", handleProfileSubmit);
+inputSubmit.addEventListener("click", overlayFalse);
+inputSubmit.addEventListener("click", formFalse);
+inputSubmit.addEventListener("click", closeButtonFalse);
+
+const formAddActive = () => {
+  formAdd.classList.remove("form-places__container");
+  formAdd.classList.add("form-places__container_active");
+  console.log("toguro");
+};
+rectangleAdd.addEventListener("click", formAddActive);
+rectangleAdd.addEventListener("click", overlayTrue);
+
+const formAddDesative = () => {
+  formAdd.classList.remove("form-places__container_active");
+  formAdd.classList.add("form-places__container");
+};
+
+const closeFormActive = () => {
+  formClose.classList.remove("form-places__close");
+  formClose.classList.add("form-places__close_active");
+};
+rectangleAdd.addEventListener("click", closeFormActive);
+
+const closeFormDesative = () => {
+  formClose.classList.remove("form-places__close_active");
+  formClose.classList.add("form-places__close");
+};
+
+formClose.addEventListener("click", overlayFalse);
+formClose.addEventListener("click", formAddDesative);
+formClose.addEventListener("click", closeFormDesative);
+
+const handleCardSubmit = (evt) => {
+  evt.preventDefault();
+
+  initialCards.forEach((card) => {
+    card.name = inputTitle.value;
+    card.link = inputUrl.value;
+  });
+
+  inputTitle.value = "";
+  inputUrl.value = "";
+};
+
+placesSubmit.addEventListener("click", handleCardSubmit);
+placesSubmit.addEventListener("click", formAddDesative);
+placesSubmit.addEventListener("click", closeFormDesative);
+placesSubmit.addEventListener("click", overlayFalse);
