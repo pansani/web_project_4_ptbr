@@ -53,6 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
     imageElement.alt = card.name;
     imageElement.classList.add("places__image");
 
+    const deleteElement = document.createElement("div");
+    deleteElement.classList.add("places__delete-image");
+
     const nameContainer = document.createElement("div");
     nameContainer.classList.add("places__container_name");
 
@@ -66,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cardElement.appendChild(imageElement);
     cardElement.appendChild(nameContainer);
+    cardElement.appendChild(deleteElement);
     nameContainer.appendChild(nameElement);
     nameContainer.appendChild(likeImage);
 
@@ -93,14 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       updateCardInDOM(currentCardIndex);
 
-      console.log(
-        `Objeto ${currentCardIndex} substituído:`,
-        initialCards[currentCardIndex]
-      );
-
       currentCardIndex++;
-    } else {
-      console.log("todos ja foram de F cria");
     }
 
     formAddDesative();
@@ -108,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
     overlayFalse();
   });
 
-  function updateCardInDOM(index) {
+  const updateCardInDOM = (index) => {
     const cardContainers = document.querySelectorAll(".places__container");
     const card = initialCards[index];
 
@@ -118,7 +115,52 @@ document.addEventListener("DOMContentLoaded", function () {
     imageElement.src = card.link;
     imageElement.alt = card.name;
     nameElement.textContent = card.name;
-  }
+  };
+
+  const removeCardElements = document.querySelectorAll(".places__delete-image");
+
+  removeCardElements.forEach((deleteElement, index) => {
+    deleteElement.addEventListener("click", function () {
+      initialCards.splice(index, 1);
+
+      const cardContainer = deleteElement.closest(".places__container");
+      cardContainer.remove();
+    });
+  });
+
+  const cardImage = document.querySelectorAll(".places__image");
+  const enlargedImageContainer = document.querySelector(
+    ".enlarged__image-container"
+  );
+  const enlargedImage =
+    enlargedImageContainer.querySelector(".enlarged__image");
+
+  cardImage.forEach((imageElement, index) => {
+    imageElement.addEventListener("click", function () {
+      const clickedImageUrl = initialCards[index].link;
+
+      enlargedImage.src = clickedImageUrl;
+      enlargedImage.classList.add("enlarged__image");
+      enlargedImage.classList.remove("enlarged__image_active");
+      enlargedImageContainer.classList.remove("enlarged__image-container");
+      enlargedImageContainer.classList.add("enlarged__container_active");
+      closeButton.classList.remove("enlarged__close-button");
+      closeButton.classList.add("enlarged__close-button_active");
+
+      overlayTrue();
+    });
+  });
+
+  const closeButton = document.querySelector(".enlarged__close-button");
+  closeButton.addEventListener("click", function () {
+    enlargedImageContainer.classList.remove("enlarged__image_active");
+    closeButton.classList.remove("enlarged__close-button_active");
+    closeButton.classList.add("enlarged__close-button");
+    enlargedImage.classList.remove("enlarged__image");
+    enlargedImage.classList.add("enlarged__image_active");
+
+    overlayFalse();
+  });
 
   const likeButtons = document.querySelectorAll(".places__like-button");
   likeButtons.forEach((likeImage) => {
