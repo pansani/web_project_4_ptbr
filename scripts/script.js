@@ -12,8 +12,6 @@ const profileSubtitle = document.querySelector(".profile__subtitle");
 const rectangleAdd = document.querySelector(".profile__rectangle");
 const formAdd = document.querySelector(".form-places__container");
 const formClose = document.querySelector(".form-places__close");
-const inputTitle = document.querySelector(".form-places__input_title");
-const inputUrl = document.querySelector(".form-places__input_url");
 const placesSubmit = document.querySelector(".form-places__submit");
 
 const initialCards = [
@@ -74,6 +72,54 @@ document.addEventListener("DOMContentLoaded", function () {
     placesContainer.appendChild(cardElement);
   });
 
+  const form = document.querySelector(".form-places");
+
+  let currentCardIndex = 0;
+
+  form.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+
+    const inputTitle = document.querySelector(".form-places__input_title");
+    const inputUrl = document.querySelector(".form-places__input_url");
+
+    if (currentCardIndex < initialCards.length) {
+      initialCards[currentCardIndex] = {
+        name: inputTitle.value,
+        link: inputUrl.value,
+      };
+
+      inputTitle.value = " ";
+      inputUrl.value = " ";
+
+      updateCardInDOM(currentCardIndex);
+
+      console.log(
+        `Objeto ${currentCardIndex} substituído:`,
+        initialCards[currentCardIndex]
+      );
+
+      currentCardIndex++;
+    } else {
+      console.log("todos ja foram de F cria");
+    }
+
+    formAddDesative();
+    closeFormDesative();
+    overlayFalse();
+  });
+
+  function updateCardInDOM(index) {
+    const cardContainers = document.querySelectorAll(".places__container");
+    const card = initialCards[index];
+
+    const imageElement = cardContainers[index].querySelector(".places__image");
+    const nameElement = cardContainers[index].querySelector(".places__title");
+
+    imageElement.src = card.link;
+    imageElement.alt = card.name;
+    nameElement.textContent = card.name;
+  }
+
   const likeButtons = document.querySelectorAll(".places__like-button");
   likeButtons.forEach((likeImage) => {
     likeImage.addEventListener("click", function () {
@@ -131,16 +177,16 @@ const handleProfileSubmit = (evt) => {
 
   profileName.textContent = inputNameValue;
   profileSubtitle.textContent = inputSubtitleValue;
+
+  overlayFalse();
+  formFalse();
+  closeButtonFalse();
 };
 inputSubmit.addEventListener("click", handleProfileSubmit);
-inputSubmit.addEventListener("click", overlayFalse);
-inputSubmit.addEventListener("click", formFalse);
-inputSubmit.addEventListener("click", closeButtonFalse);
 
 const formAddActive = () => {
   formAdd.classList.remove("form-places__container");
   formAdd.classList.add("form-places__container_active");
-  console.log("toguro");
 };
 rectangleAdd.addEventListener("click", formAddActive);
 rectangleAdd.addEventListener("click", overlayTrue);
@@ -164,20 +210,3 @@ const closeFormDesative = () => {
 formClose.addEventListener("click", overlayFalse);
 formClose.addEventListener("click", formAddDesative);
 formClose.addEventListener("click", closeFormDesative);
-
-const handleCardSubmit = (evt) => {
-  evt.preventDefault();
-
-  initialCards.forEach((card) => {
-    card.name = inputTitle.value;
-    card.link = inputUrl.value;
-  });
-
-  inputTitle.value = "";
-  inputUrl.value = "";
-};
-
-placesSubmit.addEventListener("click", handleCardSubmit);
-placesSubmit.addEventListener("click", formAddDesative);
-placesSubmit.addEventListener("click", closeFormDesative);
-placesSubmit.addEventListener("click", overlayFalse);
