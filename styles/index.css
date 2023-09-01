@@ -47,6 +47,7 @@
 @import url("./modifers/enlarged/enlarged__image_active.css");
 @import url("./modifers/enlarged/enlarged__container_active.css");
 @import url("./modifers/enlarged/enlarged__close-button_active.css");
+@import url("./modifers/enlarged/enlarged__container_active.css");
 
 * {
   margin: 0;

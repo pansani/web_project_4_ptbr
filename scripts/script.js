@@ -1,5 +1,7 @@
 /** @format */
 
+/** @format */
+
 const overlay = document.querySelector(".overlay");
 const form = document.querySelector(".form__container");
 const buttonChangeHandler = document.querySelector(".profile__square");
