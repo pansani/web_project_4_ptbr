@@ -40,6 +40,8 @@
 @import url("./modifers/form-places/form-places__close_active.css");
 @import url("./modifers/form-places/form-places__container_active.css");
 @import url("./elements/form-places/form-places__submit.css");
+@import url("./elements/form-places/form-places__title.css");
+@import url("./elements/form-places/form-places__input.css");
 
 @import url("./elements/enlarged/enlarged__close-button.css");
 @import url("./elements/enlarged/enlarged__image-container.css");

@@ -64,30 +64,31 @@
     <section class="form-places">
       <h1 class="form-places__close">+</h1>
       <div class="form-places__container">
-        <h1 class="form__title">New Place</h1>
+        <h1 class="form-places__title">New Place</h1>
         <form>
+          <input type="text" class="form-places__input" placeholder="Title" />
           <input
             type="text"
-            class="form__input form-places__input_title"
-            placeholder="Title"
-          />
-          <input
-            type="text"
-            class="form__input form-places__input_url"
+            class="form-places__input"
             placeholder="Image Url"
           />
           <input
             type="submit"
             value="Salvar"
-            class="form__input form-places__submit"
+            class="form-places__input form-places__submit"
           />
         </form>
       </div>
     </section>
-    <div class="enlarged__image-container">
-      <img class="enlarged__image" alt="Enlarged Image" />
-    </div>
-    <img class="enlarged__close-button" src="./styles/assets/Close Icon.png" />
+    <section class="enlarged">
+      <div class="enlarged__image-container">
+        <img class="enlarged__image" alt="Enlarged Image" />
+      </div>
+      <img
+        class="enlarged__close-button"
+        src="./styles/assets/Close Icon.png"
+      />
+    </section>
     <script src="scripts/script.js"></script>
   </body>
 </html>
