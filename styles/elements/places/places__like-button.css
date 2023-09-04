@@ -1,9 +1,11 @@
-.places__like-button{
-    position: absolute;
-    right: 20px;
+/** @format */
+
+.places__like-button {
+  position: absolute;
+  right: 20px;
 }
 
-.places__like-button:hover{
-    transform: scale(1.2);
-    cursor: pointer;
+.places__like-button:hover {
+  transform: scale(1.2);
+  cursor: pointer;
 }
