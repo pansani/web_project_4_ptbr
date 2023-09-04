@@ -142,8 +142,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const clickedImageUrl = initialCards[index].link;
 
       enlargedImage.src = clickedImageUrl;
-      enlargedImage.classList.add("enlarged__image");
-      enlargedImage.classList.remove("enlarged__image_active");
+      enlargedImage.classList.add("enlarged__image_active");
+      enlargedImage.classList.remove("enlarged__image");
       enlargedImageContainer.classList.remove("enlarged__image-container");
       enlargedImageContainer.classList.add("enlarged__container_active");
       closeButton.classList.remove("enlarged__close-button");
@@ -158,8 +158,8 @@ document.addEventListener("DOMContentLoaded", function () {
     enlargedImageContainer.classList.remove("enlarged__image_active");
     closeButton.classList.remove("enlarged__close-button_active");
     closeButton.classList.add("enlarged__close-button");
-    enlargedImage.classList.remove("enlarged__image");
-    enlargedImage.classList.add("enlarged__image_active");
+    enlargedImage.classList.remove("enlarged__image_active");
+    enlargedImage.classList.add("enlarged__image");
 
     overlayFalse();
   });
