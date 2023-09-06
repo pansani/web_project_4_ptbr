@@ -13,6 +13,7 @@
   background-image: url("../../assets/add-button.png");
   background-repeat: no-repeat;
   background-position: center;
+  z-index: 2;
 }
 
 .profile__rectangle:hover {

@@ -39,7 +39,7 @@
       </footer>
     </div>
     <section class="form">
-      <h1 class="form__close-button">+</h1>
+      <img src="./styles/assets/Close Icon.png" class="form__close-button" />
       <div class="form__container">
         <h1 class="form__title">Editar Perfil</h1>
         <form>
@@ -62,14 +62,18 @@
       </div>
     </section>
     <section class="form-places">
-      <h1 class="form-places__close">+</h1>
+      <img src="./styles/assets/Close Icon.png" class="form-places__close" />
       <div class="form-places__container">
         <h1 class="form-places__title">New Place</h1>
         <form>
-          <input type="text" class="form-places__input" placeholder="Title" />
           <input
             type="text"
-            class="form-places__input"
+            class="form-places__input form-places__input_title"
+            placeholder="Title"
+          />
+          <input
+            type="text"
+            class="form-places__input form-places__input_url"
             placeholder="Image Url"
           />
           <input

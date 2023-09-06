@@ -156,6 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeButton = document.querySelector(".enlarged__close-button");
   closeButton.addEventListener("click", function () {
     enlargedImageContainer.classList.remove("enlarged__image_active");
+    enlargedImageContainer.classList.remove("enlarged__container_active");
     closeButton.classList.remove("enlarged__close-button_active");
     closeButton.classList.add("enlarged__close-button");
     enlargedImage.classList.remove("enlarged__image_active");

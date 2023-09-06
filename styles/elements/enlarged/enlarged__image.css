@@ -5,4 +5,5 @@
   max-height: 1000px;
   position: absolute;
   opacity: 0;
+  display: none;
 }

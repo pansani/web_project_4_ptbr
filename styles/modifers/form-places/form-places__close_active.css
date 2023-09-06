@@ -2,11 +2,10 @@
 
 .form-places__close_active {
   position: absolute;
-  top: 7%;
-  right: 29%;
+  top: 11%;
+  right: 31%;
   display: block;
   font-weight: 100;
-  transform: rotate(45deg);
   font-size: 75px;
 }
 
