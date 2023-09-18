@@ -31,9 +31,14 @@
 @import url("./modifers/form/form__container_active.css");
 @import url("./modifers/form/form__input_submit.css");
 @import url("./modifers/form/form__close-button_active.css");
+@import url("./modifers/form/form__name_message.css");
+@import url("./modifers/form/form__subtitle_message.css");
+@import url("./elements/form/form__message.css");
 
 @import url("./elements/form-places/form-places__close.css");
 @import url("./elements/form-places/form-places__container.css");
+@import url("./elements/form-places/form-places__message.css");
+@import url("./modifers/form-places/form-places__url_message.css");
 
 @import url("./blocks/footer/footer.css");
 @import url("./elements/footer/footer__content.css");
