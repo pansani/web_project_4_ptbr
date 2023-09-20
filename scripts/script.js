@@ -326,3 +326,20 @@ const validatePlacesUrlForm = () => {
 
 const formPlacesUrl = document.querySelector(".form-places__input_url");
 formPlacesUrl.addEventListener("input", validatePlacesUrlForm);
+
+const closeByOverlay = () => {
+  overlay.addEventListener("click", overlayFalse);
+  overlay.addEventListener("click", formFalse);
+  overlay.addEventListener("click", closeButtonFalse);
+  overlay.addEventListener("click", overlayFalse);
+  overlay.addEventListener("click", formAddDesative);
+  overlay.addEventListener("click", closeFormDesative);
+};
+
+overlay.addEventListener("click", closeByOverlay);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" || event.key === "Esc") {
+    closeByOverlay();
+  }
+});
