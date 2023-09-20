@@ -1,6 +1,6 @@
 /** @format */
 
-/** @format */
+import { enableValidation } from "./validate.js";
 
 const overlay = document.querySelector(".overlay");
 const form = document.querySelector(".form__container");

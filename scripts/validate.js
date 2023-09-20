@@ -1,81 +1,59 @@
 /** @format */
 
-enableValidation({
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-});
+function enableValidation(config) {
+  const form = document.querySelector(config.formSelector);
 
-const inputNameMessage = document.querySelector(".form__name_message");
-const inputSubtitleMessage = document.querySelector("#form__subtitle_message");
-
-const validateProfileNameForm = () => {
-  const inputNameValue = document.querySelector(".form__input_name").value;
-  if (inputNameValue.length === 0) {
-    inputNameMessage.innerHTML = "Por favor preencha este campo";
-  } else if (inputNameValue.length < 2) {
-    inputNameMessage.innerHTML =
-      "Aumente este texto para 2 caracteres ou mais. Você está usando 1 caractere no momento";
-  } else if (inputNameValue.length > 2) {
-    inputNameMessage.innerHTML = "";
+  function showError(input) {
+    input.classList.add(config.inputErrorClass);
+    const errorElement = form.querySelector(`#${input.id}-error`);
+    errorElement.textContent = input.validationMessage;
+    errorElement.classList.add(config.errorClass);
   }
-};
 
-inputName.addEventListener("input", validateProfileNameForm);
-
-const validateProfileSubtitleForm = () => {
-  const inputSubtitleValue = document.querySelector(
-    ".form__input_subtitle"
-  ).value;
-
-  if (inputSubtitleValue.length === 0) {
-    inputSubtitleMessage.innerHTML = "Por favor preencha este campo";
-  } else if (inputSubtitleValue.length < 2) {
-    inputSubtitleMessage.innerHTML =
-      "Aumente este texto para 2 caracteres ou mais. Você está usando 1 caractere no momento";
-  } else if (inputSubtitleValue.length > 2) {
-    inputSubtitleMessage.innerHTML = "";
+  function hideError(input) {
+    input.classList.remove(config.inputErrorClass);
+    const errorElement = form.querySelector(`#${input.id}-error`);
+    errorElement.textContent = "";
+    errorElement.classList.remove(config.errorClass);
   }
-};
 
-inputSubtitle.addEventListener("input", validateProfileSubtitleForm);
-
-const inputTitleMessage = document.querySelector(".form-places__title_message");
-const inputUrlMessage = document.querySelector("#form-places__url_message");
-
-const validatePlacesTitleForm = () => {
-  const inputTitleValue = document.querySelector(
-    ".form-places__input_title"
-  ).value;
-
-  if (inputTitleValue.length === 0) {
-    inputTitleMessage.innerHTML = "Por favor preencha este campo";
-  } else if (inputTitleValue.length < 2) {
-    inputTitleMessage.innerHTML =
-      "Aumente este texto para 2 caracteres ou mais. Você está usando 1 caractere no momento";
-  } else if (inputTitleValue.length > 2) {
-    inputTitleMessage.innerHTML = "";
+  function checkInputValidity(input) {
+    if (input.validity.valid) {
+      hideError(input);
+    } else {
+      showError(input);
+    }
   }
-};
 
-const formPlacesTitle = document.querySelector(".form-places__input_title");
-formPlacesTitle.addEventListener("input", validatePlacesTitleForm);
-
-const validatePlacesUrlForm = () => {
-  const inputUrlValue = document.querySelector(".form-places__input_url").value;
-
-  if (inputUrlValue.length === 0) {
-    inputUrlMessage.innerHTML = "Por favor preencha este campo";
-  } else if (inputUrlValue.length < 2) {
-    inputUrlMessage.innerHTML =
-      "Aumente este texto para 2 caracteres ou mais. Você está usando 1 caractere no momento";
-  } else if (inputUrlValue.length > 2) {
-    inputUrlMessage.innerHTML = "";
+  function toggleButtonState(button, isValid) {
+    if (isValid) {
+      button.classList.remove(config.inactiveButtonClass);
+      button.disabled = false;
+    } else {
+      button.classList.add(config.inactiveButtonClass);
+      button.disabled = true;
+    }
   }
-};
 
-const formPlacesUrl = document.querySelector(".form-places__input_url");
-formPlacesUrl.addEventListener("input", validatePlacesUrlForm);
+  function setEventListeners() {
+    const inputList = Array.from(form.querySelectorAll(config.inputSelector));
+    const submitButton = form.querySelector(config.submitButtonSelector);
+
+    inputList.forEach((input) => {
+      input.addEventListener("input", function () {
+        checkInputValidity(input);
+        toggleButtonState(submitButton, form.checkValidity());
+      });
+    });
+
+    form.addEventListener("submit", function (evt) {
+      evt.preventDefault();
+    });
+
+    toggleButtonState(submitButton, form.checkValidity());
+  }
+
+  setEventListeners();
+}
+
+export { enableValidation };
