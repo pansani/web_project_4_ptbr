@@ -1,6 +1,5 @@
-//Aqui é a Programação do Button de edição do perfil.
+/** @format */
 
-//Parte de fazer o pupup abrir, alem de fazer tudo o que for editado ficar na tela.
 const profileButton = document.querySelector(".profile__button");
 const popupUserForm = document.querySelector("#popup-user-form");
 const formEdit = document.querySelector(".popup__form-itens");
@@ -26,13 +25,12 @@ const overlayImage = document.querySelector("#overlay-image");
 const addFormFirst = document.querySelector("#first");
 const form = document.querySelector(".popup__form_edit");
 const abrir = document.querySelectorAll(".abrir");
-// array com os cards que serão adicionados a ul7
 const initialCards = [
   {
     name: "Vale de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
   },
-    {
+  {
     name: "Lago Louise",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
   },
@@ -54,48 +52,33 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
 ];
-// adicionando o valor dos inputs nos titulos
+
 inputNome.value = profileTitle.textContent;
 inputJob.value = profileSubtitle.textContent;
 
-
 const fecharComEsc = (event, popup) => {
   if (event.key === "Escape") {
-  popup.classList.remove("popup_opened")
+    popup.classList.remove("popup_opened");
   }
   document.removeEventListener("keydown", (event) => {
-    fecharComEsc(event, popup)
-  })
-}
+    fecharComEsc(event, popup);
+  });
+};
 
-function abrirPopup (popup) {
-  popup.classList.add("popup_opened")
+function abrirPopup(popup) {
+  popup.classList.add("popup_opened");
   document.addEventListener("keydown", (event) => {
-    fecharComEsc(event, popup)
-  })
+    fecharComEsc(event, popup);
+  });
 }
 
 profileButton.addEventListener("click", () => {
-  abrirPopup(popupUserForm)
-})
+  abrirPopup(popupUserForm);
+});
 addButton.addEventListener("click", () => {
-  abrirPopup(popupCardForm)
-})
+  abrirPopup(popupCardForm);
+});
 
-/*
-abrir.forEach((e,i)=> {
-  e.addEventListener("click", ()=> {
-    if (i == 0) {
-      return popupUserForm.classList.add("popup_opened");
-    } else {
-      return popupCardForm.classList.add("popup_opened")
-    }
-  })
-}) */
-// document.addEventListener("keydown", fecharComEsc);
-// profileButton.addEventListener("click", abrirEditPopup);
-
-// função de crear cards
 function createCard(card) {
   const cardTemplate = document.querySelector("#template");
   const cardElement = cardTemplate.content.cloneNode(true);
@@ -111,7 +94,7 @@ function createCard(card) {
   cards.prepend(cardList);
 
   cardImage.addEventListener("click", (event) => {
-    abrirPopup(popupImage)
+    abrirPopup(popupImage);
     popupImage.querySelector(".card__image")?.remove();
     popupImage.append(cardImage.cloneNode(true));
   });
@@ -129,16 +112,12 @@ popupCardForm.addEventListener("submit", (event) => {
   addFormFirst.reset();
 });
 
-// evento de submit no botão de salvar o formulario
 popupUserForm.addEventListener("submit", (event) => {
   event.preventDefault();
   profileTitle.textContent = inputNome.value;
   profileSubtitle.textContent = inputJob.value;
 });
 
-
-
-// Aqui irei programar para ele fechar com click no X e no submit do botao add e do botão edit
 formClose.addEventListener("click", () => {
   popupUserForm.classList.remove("popup_opened");
 });
@@ -160,7 +139,6 @@ window.addEventListener("load", () => {
   initialCards.forEach(createCard);
 });
 
-// adicionando a funcao de remover os card
 function removeCardElement(event) {
   const cardToRemove = event.target.closest(".card");
   if (cardToRemove) {
@@ -181,18 +159,17 @@ function lickImage(event) {
     const isLiked = cardUnlick.getAttribute("data-liked") === "true";
 
     if (isLiked) {
-      cardUnlick.src = "./image/unlike.png"; // Alteração da imagem para "não curtir"
+      cardUnlick.src = "./image/unlike.png";
       cardUnlick.setAttribute("data-liked", "false");
     } else {
-      cardUnlick.src = "./image/liked.png"; // Alteração da imagem para "curtir"
+      cardUnlick.src = "./image/liked.png";
       cardUnlick.setAttribute("data-liked", "true");
     }
   }
 }
-// interação com o botao de lick
+
 cards.addEventListener("click", lickImage);
 
-// fechar o popup precionando Fora dele
 overlay.addEventListener("click", () => {
   popupUserForm.classList.remove("popup_opened");
 });
