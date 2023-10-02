@@ -1,132 +1,103 @@
+<!-- @format -->
+
 <!DOCTYPE html>
-<html lang="pt-br">
-<!-- head -->
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="JavaScript Basico, introduzindo o DOM">
-  <meta name="keywords" content="HTML, CSS, JavaScript, DOM, Nojekyll">
-  <meta name="author" content="Ericky Dias">
-  <link rel="stylesheet" href="./pages/index.css">
-  <title>Around The US</title>
-</head>
-
-<!-- Body -->
-
-<body class="page">
-  <!-- header -->
-  <header class="header">
-    <img src="./image/Vector.svg" alt="logo around the us" class="header__logo">
-  </header>
-  <!-- conteudo Principal -->
-  <main class="main">
-    <!-- conteudo de perfil de usuario -->
-    <section class="profile">
-      <div class="profile__container">
-        <img src="./image/perfil.png" class="profile__image" alt="profile picture">
-        <div class="profile__titles">
-          <div class="profile__content">
-            <h1 class="profile__title">Jacques Cousteau</h1>
-            <button class="profile__button opacursor abrir">
-              <img src="./image/Lapiz__icon.png" class="edit" alt="icone de um lapiz">
-            </button>
-          </div>
-          <h2 class="profile__subtitle">Explorar</h2>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./styles/assets/logo__triple-ten.jpeg" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <title>Around The US</title>
+  </head>
+  <body>
+    <div class="overlay">
+      <section class="header">
+        <img
+          src="./styles/assets/logo__header-aroundUs.png"
+          class="header__logo-img"
+          alt="Logo"
+        />
+      </section>
+      <section class="profile">
+        <img
+          src="./styles/assets/Avatar.png"
+          alt="Profile picture"
+          class="profile__image"
+        />
+        <div class="profile__content">
+          <h1 class="profile__name">Jacques Cousteau</h1>
+          <h3 class="profile__subtitle">Explorador</h3>
+          <div class="profile__square"></div>
         </div>
+        <div class="profile__rectangle"></div>
+      </section>
+      <section class="places">
+        <div class="places__grid"></div>
+      </section>
+      <footer class="footer">
+        <p class="footer__content">© 2023 Around The U.S.</p>
+      </footer>
+    </div>
+    <section class="form">
+      <img src="./styles/assets/Close Icon.png" class="form__close-button" />
+      <div class="form__container">
+        <h1 class="form__title">Editar Perfil</h1>
+        <form>
+          <input
+            type="text"
+            value="Jacques Cousteau"
+            class="form__input form__input_name"
+          />
+          <div class="form__message form__name_message"></div>
+          <input
+            type="text"
+            value="Explorador"
+            class="form__input form__input_subtitle"
+          />
+          <div class="form__message" id="form__subtitle_message"></div>
+          <input
+            type="submit"
+            value="Salvar"
+            class="form__input form__input_submit"
+          />
+        </form>
       </div>
-      <button class="button profile__button-add opacursor abrir">
-        <img src="./image/add__icon.png" alt="simbolo de adição" class="button__icon">
-      </button>
     </section>
-
-
-    <!-- conteudo dos cards -->
-    <ul class="cards">
-    </ul>
-
-
-    <div class="popup-image"></div>
-    <!-- formulario de edicao do perfil -->
-    <div class="popup" id="popup-user-form">
-      <div class="overlay"></div>
-
-      <form class="popup__form-edit">
-        <div class="popup__form-itens">
-          <div class="popup__form-close">
-            <img src="./image/Close__Icon.png" alt="Botão que feixa a caixa de edição">
-          </div>
-          <h2 class="popup__form-title">Editar Perfil</h2>
-
-          <div class="popup__form-inputs">
-            <input  required type="text" value=""  minlength="2" maxlength="40" name="nome" id="nome" class="popup__form-input popup__form-name">
-            <span class="popup__form" id="span-input-name"></span>
-          </div>
-
-          <div class="popup__form-inputs">
-            <input  required type="text" value="" name="job" id="job" class="popup__form-input popup__form-job" minlength="2" maxlength="200">
-            <span class="popup__form" id="span-input-job"></span>
-          </div>
-
-          <button id="button__submit" class="button-submit disability" type="submit">Salvar</button>
-        </div>
-      </form>
-    </div>
-
-    <div class="popup" id="popup-card-form">
-      <div class="overlay" id="overlay-add"></div>
-
-      <form novalidate id="first">
-        <div class="popup__form-itens" id="form__itens">
-          <div class="popup__form-close" id="close-add">
-            <img src="./image/Close__Icon.png" alt="Botão que feixa a caixa de edição">
-          </div>
-          <h2 class="popup__form-title">Novo Local</h2>
-
-
-          <div class="popup__form-inputs">
-            <input type="text" required minlength="2" value="" name="nome" id="input__title" class="popup__form-input popup__form-name add-title " maxlength="41" placeholder="Titulo">
-            <span class="popup__form" id="span-input-add-name"></span>
-          </div>
-
-          <div class="popup__form-inputs">
-            <input required name="image" minlength="1" value="" id="input__image" class="popup__form-input popup__form-job add-image" type="url" placeholder="Link de imagem">
-            <span class="popup__form" id="span-input-add-image"></span>
-          </div>
-
-          <button id="add__submit" class="button button-submit" type="submit">Salvar</button>
-        </div>
-      </form>
-    </div>
-    <div class="popup" id="popup-image">
-      <div class="overlay" id="overlay-image"></div>
-      <div class="popup-container">
-        
-        <div class="close-image">
-          <img src="./image/Close__Icon.png" alt="Botão que feixa a caixa de edição">
-        </div>
+    <section class="form-places">
+      <img src="./styles/assets/Close Icon.png" class="form-places__close" />
+      <div class="form-places__container">
+        <h1 class="form-places__title">New Place</h1>
+        <form>
+          <input
+            type="text"
+            class="form-places__input form-places__input_title"
+            placeholder="Title"
+          />
+          <div class="form-places__message form-places__title_message"></div>
+          <input
+            type="text"
+            class="form-places__input form-places__input_url"
+            placeholder="Image Url"
+          />
+          <div class="form-places__message" id="form-places__url_message"></div>
+          <input
+            type="submit"
+            value="Salvar"
+            class="form-places__input form-places__submit"
+          />
+        </form>
       </div>
-    </div>
-  </main>
-
-  <template id="template">
-    <li class="card">
-      <img class="del opacursor" src="./image/lixeira.png" alt="icone de lixeira">
-      <img class="card__image">
-      <h2 class="card__title"></h2>
-      <img class="card__unlick" src="./image/unlike.png" alt="lick">
-    </li>
-  </template>
-
-  <template id="overlay">
-  </template>
-  <!-- Rodapé -->
-  <footer class="footer">
-    <p class="footer__text">&copy; 2023 Ericky Dias</p>
-  </footer>
-  <!-- Java Script -->
-  <script src="./pages/index.js"></script>
-  <script src="./pages/validate.js"></script>
-
-</body>
+    </section>
+    <section class="enlarged">
+      <div class="enlarged__image-container">
+        <img class="enlarged__image" alt="Enlarged Image" />
+      </div>
+      <img
+        class="enlarged__close-button"
+        src="./styles/assets/Close Icon.png"
+      />
+    </section>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/validate.js"></script>
+  </body>
 </html>
