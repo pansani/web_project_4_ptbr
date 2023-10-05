@@ -13,11 +13,12 @@ const enlargedImage = enlargedImageContainer.querySelector(".enlarged__image");
 const closeButtonEnlarged = document.querySelector(".enlarged__close-button");
 const form = document.querySelector(".form__container");
 
-const overlayTrue = () => {
+export const overlayTrue = () => {
   overlay.classList.remove("overlay");
   overlay.classList.add("overlay__active");
 };
 buttonChangeHandler.addEventListener("click", overlayTrue);
+rectangleAdd.addEventListener("click", overlayTrue);
 
 export const overlayFalse = () => {
   overlay.classList.remove("overlay__active");
@@ -25,38 +26,44 @@ export const overlayFalse = () => {
 };
 
 closeButton.addEventListener("click", overlayFalse);
-closeButton.addEventListener("click", formFalse);
-closeButton.addEventListener("click", closeButtonFalse);
+
+const formTrue = () => {
+  form.classList.remove("form__container");
+  form.classList.add("form__container_active");
+};
+buttonChangeHandler.addEventListener("click", formTrue);
 
 export const formFalse = () => {
   form.classList.remove("form__container_active");
   form.classList.add("form__container");
 };
 
-const closeButtonTrue = () => {
+closeButton.addEventListener("click", formFalse);
+
+export const closeButtonTrue = () => {
   closeButton.classList.remove("form__close-button");
   closeButton.classList.add("form__close-button_active");
 };
 buttonChangeHandler.addEventListener("click", closeButtonTrue);
 
-const closeButtonFalse = () => {
+export const closeButtonFalse = () => {
   closeButton.classList.remove("form__close-button_active");
   closeButton.classList.add("form__close-button");
 };
+closeButton.addEventListener("click", closeButtonFalse);
 
-const formAddActive = () => {
+export const formAddActive = () => {
   formAdd.classList.remove("form-places__container");
   formAdd.classList.add("form-places__container_active");
 };
 rectangleAdd.addEventListener("click", formAddActive);
-rectangleAdd.addEventListener("click", overlayTrue);
 
 export const formAddDesative = () => {
   formAdd.classList.remove("form-places__container_active");
   formAdd.classList.add("form-places__container");
 };
 
-const closeFormActive = () => {
+export const closeFormActive = () => {
   formClose.classList.remove("form-places__close");
   formClose.classList.add("form-places__close_active");
 };
@@ -75,7 +82,7 @@ formClose.addEventListener("click", overlayFalse);
 formClose.addEventListener("click", formAddDesative);
 formClose.addEventListener("click", closeFormDesative);
 
-const closeByOverlay = () => {
+export const closeByOverlay = () => {
   overlay.addEventListener("click", overlayFalse);
   overlay.addEventListener("click", formFalse);
   overlay.addEventListener("click", closeButtonFalse);
