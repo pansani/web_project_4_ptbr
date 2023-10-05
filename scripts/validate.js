@@ -1,14 +1,16 @@
 /** @format */
 
-enableValidation({
+/*enableValidation({
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
-});
+});*/
 
+const inputName = document.querySelector(".form__input_name");
+const inputSubtitle = document.querySelector(".form__input_subtitle");
 const inputNameMessage = document.querySelector(".form__name_message");
 const inputSubtitleMessage = document.querySelector("#form__subtitle_message");
 
