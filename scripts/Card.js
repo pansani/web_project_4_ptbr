@@ -1,6 +1,6 @@
 /** @format */
 
-import { initialCards } from "./data.js";
+import { initialCards } from "./script.js";
 import {
   overlayTrue,
   overlayFalse,
@@ -9,40 +9,24 @@ import {
 } from "./utils.js";
 
 export default class Card {
-  constructor(data, cardSelector, index) {
-    this._data = data;
-    this._cardSelector = cardSelector;
-    this._index = index;
+  constructor(data, index) {
+    this.data = data;
+    this.index = index;
+    this._initialCards = initialCards;
+    this.currentCardIndex = 0;
   }
 
   _getTemplate() {
-    const cardElement = document.createElement("div");
-    cardElement.classList.add("places__container");
+    const cardTemplate = document.querySelector("#card-template");
+    const cardClone = document.importNode(cardTemplate.content, true);
+    const cardElement = cardClone.querySelector(".places__container");
 
-    const imageElement = document.createElement("img");
-    imageElement.src = this._data.link;
-    imageElement.alt = this._data.name;
-    imageElement.classList.add("places__image");
+    const imageElement = cardElement.querySelector(".places__image");
+    imageElement.src = this.data.link;
+    imageElement.alt = this.data.name;
 
-    const deleteElement = document.createElement("div");
-    deleteElement.classList.add("places__delete-image");
-
-    const nameContainer = document.createElement("div");
-    nameContainer.classList.add("places__container_name");
-
-    const nameElement = document.createElement("h1");
-    nameElement.classList.add("places__title");
-    nameElement.textContent = this._data.name;
-
-    const likeImage = document.createElement("img");
-    likeImage.classList.add("places__like-button");
-    likeImage.src = "./styles/assets/like_button.svg";
-
-    cardElement.appendChild(imageElement);
-    cardElement.appendChild(nameContainer);
-    cardElement.appendChild(deleteElement);
-    nameContainer.appendChild(nameElement);
-    nameContainer.appendChild(likeImage);
+    const nameElement = cardClone.querySelector(".places__title");
+    nameElement.textContent = this.data.name;
 
     return cardElement;
   }
@@ -72,7 +56,7 @@ export default class Card {
   }
 
   _handleImageClick() {
-    const clickedImageUrl = this._data.link;
+    const clickedImageUrl = this.data.link;
 
     const enlargedImageContainer = document.querySelector(
       ".enlarged__image-container"
@@ -95,10 +79,13 @@ export default class Card {
   }
 
   _updateCardInDOM(index) {
-    const cardContainers = document.querySelector(".places__container");
-    const card = initialCards[index];
-    const imageElement = cardContainers[index].querySelector(".places__image");
-    const nameElement = cardContainers[index].querySelector(".places__title");
+    const cardContainer = document.querySelector(".places__grid");
+    const cardElements = cardContainer.querySelectorAll(".places__container");
+    const card = this._initialCards[index];
+    const cardElement = cardElements[index];
+
+    const imageElement = cardElement.querySelector(".places__image");
+    const nameElement = cardElement.querySelector(".places__title");
 
     imageElement.src = card.link;
     imageElement.alt = card.name;
@@ -106,23 +93,21 @@ export default class Card {
   }
 
   _submitAddCard() {
-    let currentCardIndex = 0;
-
     const inputTitle = document.querySelector(".form-places__input_title");
     const inputUrl = document.querySelector(".form-places__input_url");
 
-    if (currentCardIndex < this._initialCards.length) {
-      this._initialCards[currentCardIndex] = {
+    if (this.currentCardIndex < this._initialCards.length) {
+      this._initialCards[this.currentCardIndex] = {
         name: inputTitle.value,
         link: inputUrl.value,
       };
 
-      inputTitle.value = " ";
-      inputUrl.value = " ";
+      this._updateCardInDOM(this.currentCardIndex);
 
-      this._updateCardInDOM(currentCardIndex);
+      inputTitle.value = "";
+      inputUrl.value = "";
 
-      currentCardIndex++;
+      this.currentCardIndex++;
     }
 
     formAddDesative();
@@ -154,10 +139,7 @@ export default class Card {
     const likeButton = this._element.querySelector(".places__like-button");
     const deleteButton = this._element.querySelector(".places__delete-image");
     const imageElement = this._element.querySelector(".places__image");
-    const formPlaces = this._element.querySelector(".form-places");
-    const closeButtonEnlarged = this._element.querySelector(
-      ".enlarged__close-button"
-    );
+    const formPlaces = document.querySelector("#form-places");
 
     likeButton.addEventListener("click", () => {
       this._handleLikeClick();
@@ -171,19 +153,10 @@ export default class Card {
       this._handleImageClick();
     });
 
-    formPlaces.addEventListener("click", (event) => {
-      event.preventDefault();
+    formPlaces.addEventListener("submit", (evt) => {
+      evt.preventDefault();
       this._submitAddCard();
+      console.log("toguro");
     });
-
-    closeButtonEnlarged.addEventListener("click", () => {
-      this._closeButtonEnlarged();
-    });
-
-    console.log("likeButton:", likeButton);
-    console.log("deleteButton:", deleteButton);
-    console.log("imageElement:", imageElement);
-    console.log("formPlaces:", formPlaces);
-    console.log("closeButtonEnlarged:", closeButtonEnlarged);
   }
 }

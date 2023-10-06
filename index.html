@@ -32,7 +32,21 @@
         <div class="profile__rectangle"></div>
       </section>
       <section class="places">
-        <div class="places__grid"></div>
+        <div class="places__grid">
+          <template id="card-template">
+            <div class="places__container">
+              <img class="places__image" src="" alt="" />
+              <div class="places__container_name">
+                <h1 class="places__title"></h1>
+                <img
+                  class="places__like-button"
+                  src="./styles/assets/like_button.svg"
+                />
+              </div>
+              <div class="places__delete-image"></div>
+            </div>
+          </template>
+        </div>
       </section>
       <footer class="footer">
         <p class="footer__content">© 2023 Around The U.S.</p>
@@ -67,7 +81,7 @@
       <img src="./styles/assets/Close Icon.png" class="form-places__close" />
       <div class="form-places__container">
         <h1 class="form-places__title">New Place</h1>
-        <form>
+        <form id="form-places" class="form-places">
           <input
             type="text"
             class="form-places__input form-places__input_title"
