@@ -25,8 +25,8 @@
           class="profile__image"
         />
         <div class="profile__content">
-          <h1 class="profile__name">Jacques Cousteau</h1>
-          <h3 class="profile__subtitle">Explorador</h3>
+          <h1 class="profile__name" id="profileName">Jacques Cousteau</h1>
+          <h3 class="profile__subtitle" id="profileSubtitle">Explorador</h3>
           <div class="profile__square"></div>
         </div>
         <div class="profile__rectangle"></div>
@@ -53,7 +53,12 @@
       </footer>
     </div>
     <section class="form">
-      <img src="./styles/assets/Close Icon.png" class="form__close-button" />
+      <img
+        src="./styles/assets/Close Icon.png"
+        class="form__close-button"
+        id="formCloseButton"
+      />
+
       <div class="form__container">
         <h1 class="form__title">Editar Perfil</h1>
         <form id="form">
@@ -61,6 +66,7 @@
             type="text"
             value="Jacques Cousteau"
             class="form__input form__input_name"
+            name="inputName"
           />
           <div
             class="form__message form__name_message form__error_visible"
@@ -69,13 +75,14 @@
             type="text"
             value="Explorador"
             class="form__input form__input_subtitle"
+            name="inputSubtitle"
           />
           <div
             class="form__message"
             id="form__subtitle_message form__error_visible"
           ></div>
           <input
-            type="submit"
+            type="button"
             value="Salvar"
             class="form__input form__input_submit form__input_submit_disabled"
           />

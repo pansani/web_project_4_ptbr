@@ -14,6 +14,7 @@ class FormValidator {
     );
 
     this._setEventListeners();
+    console.log("Construtor FormValidator chamado");
   }
   _showInputError(inputElement, errorMessage) {
     const errorElement = this._formElement.querySelector(
@@ -38,6 +39,7 @@ class FormValidator {
 
     if (inputLength === 0) {
       this._showInputError(inputElement, "Por favor, preencha este campo");
+      console.log("teste inputerror");
     } else if (inputLength < 2) {
       this._showInputError(
         inputElement,
@@ -64,30 +66,18 @@ class FormValidator {
     }
   }
 
-  _setEventListeners() {
-    this._inputElements.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
-        this._checkInputValidity(inputElement);
-        this._toggleButtonState();
-      });
-    });
-
-    this._formElement.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      this.handleSubmit();
-    });
-  }
-
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
     const formValues = {};
     this._inputElements.forEach((inputElement) => {
       formValues[inputElement.name] = inputElement.value;
     });
 
-    const profileName = document.querySelector(".form__name");
-    const profileSubtitle = document.querySelector(".form__subtitle");
-    profileName.textContent = formValues["inputName"];
-    profileSubtitle.textContent = formValues["inputSubtitle"];
+    const profileNameElement = document.getElementById("profileName");
+    const profileSubtitleElement = document.getElementById("profileSubtitle");
+
+    profileNameElement.textContent = formValues["inputName"];
+    profileSubtitleElement.textContent = formValues["inputSubtitle"];
 
     overlayFalse();
     formFalse();
@@ -96,6 +86,28 @@ class FormValidator {
 
   enableValidation() {
     this._toggleButtonState();
+  }
+  _setEventListeners() {
+    const formSubmit = document.querySelector(".form__input_submit");
+
+    console.log("Antes de adicionar o event listener ao formSubmit");
+
+    formSubmit.addEventListener("click", (evt) => {
+      evt.preventDefault();
+      this.handleSubmit(evt);
+      console.log("Event listener do formSubmit chamado");
+    });
+
+    console.log("Adicionando event listener a um inputElement");
+
+    this._inputElements.forEach((inputElement) => {
+      inputElement.addEventListener("input", () => {
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState();
+      });
+    });
+
+    console.log("Método _setEventListeners chamado");
   }
 }
 
