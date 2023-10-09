@@ -63,11 +63,11 @@ export default class Card {
 
       this._updateCardInDOM(this.currentCardIndex);
 
-      inputTitle.value = "";
-      inputUrl.value = "";
-
       this.currentCardIndex++;
     }
+
+    console.log("Input Title:", inputTitle.value);
+    console.log("Input URL:", inputUrl.value);
 
     formAddDesative();
     closeFormDesative();

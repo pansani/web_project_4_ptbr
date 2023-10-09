@@ -1,13 +1,13 @@
 /** @format */
 
-/*enableValidation({
+/* enableValidation({
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
-});*/
+});
 
 const inputName = document.querySelector(".form__input_name");
 const inputSubtitle = document.querySelector(".form__input_subtitle");
@@ -80,4 +80,4 @@ const validatePlacesUrlForm = () => {
 };
 
 const formPlacesUrl = document.querySelector(".form-places__input_url");
-formPlacesUrl.addEventListener("input", validatePlacesUrlForm);
+formPlacesUrl.addEventListener("input", validatePlacesUrlForm); */

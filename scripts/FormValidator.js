@@ -3,7 +3,7 @@
 import { overlayFalse, formFalse, closeButtonFalse } from "./utils";
 
 class FormValidator {
-  cconstructor(config, formElement) {
+  constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
     this._inputElements = Array.from(
@@ -16,33 +16,19 @@ class FormValidator {
     this._setEventListeners();
   }
 
-  _setEventListeners() {
-    this._inputElements.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
-        this._checkInputValidity(inputElement);
-        this._toggleButtonState();
-      });
-    });
-
-    this._formElement.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      this._handleSubmit();
-    });
-  }
-
   _showInputError(inputElement, errorMessage) {
-    const errorElement = inputElement
-      .closest(this._config.formSelector)
-      .querySelector(`#${inputElement.id}_message`);
+    const errorElement = this._formElement.querySelector(
+      `#${inputElement.id}_message`
+    );
     inputElement.classList.add(this._config.inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._config.errorClass);
   }
 
   _hideInputError(inputElement) {
-    const errorElement = inputElement
-      .closest(this._config.formSelector)
-      .querySelector(`#${inputElement.id}_message`);
+    const errorElement = this._formElement.querySelector(
+      `#${inputElement.id}_message`
+    );
     inputElement.classList.remove(this._config.inputErrorClass);
     errorElement.textContent = "";
     errorElement.classList.remove(this._config.errorClass);
@@ -79,6 +65,20 @@ class FormValidator {
     }
   }
 
+  _setEventListeners() {
+    this._inputElements.forEach((inputElement) => {
+      inputElement.addEventListener("input", () => {
+        this._checkInputValidity(inputElement);
+        this._toggleButtonState();
+      });
+    });
+
+    this._formElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      this.handleSubmit();
+    });
+  }
+
   handleSubmit() {
     const formValues = {};
     this._inputElements.forEach((inputElement) => {
@@ -105,17 +105,17 @@ const configProfile = {
   inputSelector: ".form__input",
   submitButtonSelector: ".form__input_submit",
   inactiveButtonClass: "form__input_submit_disabled",
-  inputErrorClass: "form__name_message",
-  errorClass: "form__message_visible",
+  inputErrorClass: ".form__input_type_error",
+  errorClass: ".form__error_visible",
 };
 
 const configPlaces = {
   formSelector: ".form-places",
   inputSelector: ".form-places__input",
-  submitButtonSelector: ".form-places__input.form-places__submit",
-  inactiveButtonClass: "form-places__input_submit_disabled",
-  inputErrorClass: "form-places__message",
-  errorClass: "form-places__message_visible",
+  submitButtonSelector: ".form-places__submit",
+  inactiveButtonClass: ".form-places__submit_disabled",
+  inputErrorClass: ".form-places__input_type_error",
+  errorClass: ".form-places__error_visible",
 };
 
 const profileForm = document.querySelector(".form");
