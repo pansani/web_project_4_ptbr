@@ -37,6 +37,43 @@ export default class Card {
     return this._element;
   }
 
+  _updateCardInDOM(index) {
+    const cardContainer = document.querySelector(".places__grid");
+    const cardElements = cardContainer.querySelectorAll(".places__container");
+    const card = this._initialCards[index];
+    const cardElement = cardElements[index];
+
+    const imageElement = cardElement.querySelector(".places__image");
+    const nameElement = cardElement.querySelector(".places__title");
+
+    imageElement.src = card.link;
+    imageElement.alt = card.name;
+    nameElement.textContent = card.name;
+  }
+
+  _submitAddCard() {
+    const inputTitle = document.querySelector(".form-places__input_title");
+    const inputUrl = document.querySelector(".form-places__input_url");
+
+    if (this.currentCardIndex < this._initialCards.length) {
+      this._initialCards[this.currentCardIndex] = {
+        name: inputTitle.value,
+        link: inputUrl.value,
+      };
+
+      this._updateCardInDOM(this.currentCardIndex);
+
+      inputTitle.value = "";
+      inputUrl.value = "";
+
+      this.currentCardIndex++;
+    }
+
+    formAddDesative();
+    closeFormDesative();
+    overlayFalse();
+  }
+
   _handleLikeClick() {
     const likeButton = this._element.querySelector(".places__like-button");
     if (likeButton.src.includes("like_button.svg")) {
@@ -78,44 +115,9 @@ export default class Card {
     overlayTrue();
   }
 
-  _updateCardInDOM(index) {
-    const cardContainer = document.querySelector(".places__grid");
-    const cardElements = cardContainer.querySelectorAll(".places__container");
-    const card = this._initialCards[index];
-    const cardElement = cardElements[index];
-
-    const imageElement = cardElement.querySelector(".places__image");
-    const nameElement = cardElement.querySelector(".places__title");
-
-    imageElement.src = card.link;
-    imageElement.alt = card.name;
-    nameElement.textContent = card.name;
-  }
-
-  _submitAddCard() {
-    const inputTitle = document.querySelector(".form-places__input_title");
-    const inputUrl = document.querySelector(".form-places__input_url");
-
-    if (this.currentCardIndex < this._initialCards.length) {
-      this._initialCards[this.currentCardIndex] = {
-        name: inputTitle.value,
-        link: inputUrl.value,
-      };
-
-      this._updateCardInDOM(this.currentCardIndex);
-
-      inputTitle.value = "";
-      inputUrl.value = "";
-
-      this.currentCardIndex++;
-    }
-
-    formAddDesative();
-    closeFormDesative();
-    overlayFalse();
-  }
-
   _closeButtonEnlarged() {
+    const clickedImageUrl = this.data.link;
+
     const enlargedImageContainer = document.querySelector(
       ".enlarged__image-container"
     );
@@ -125,14 +127,16 @@ export default class Card {
       ".enlarged__close-button"
     );
 
-    enlargedImageContainer.classList.remove("enlarged__image_active");
-    enlargedImageContainer.classList.remove("enlarged__container_active");
-    closeButtonEnlarged.classList.remove("enlarged__close-button_active");
-    closeButtonEnlarged.classList.add("enlarged__close-button");
+    enlargedImage.src = clickedImageUrl;
     enlargedImage.classList.remove("enlarged__image_active");
     enlargedImage.classList.add("enlarged__image");
+    enlargedImageContainer.classList.add("enlarged__image-container");
+    enlargedImageContainer.classList.remove("enlarged__container_active");
+    closeButtonEnlarged.classList.add("enlarged__close-button");
+    closeButtonEnlarged.classList.remove("enlarged__close-button_active");
 
     overlayFalse();
+    console.log("teste closeButton");
   }
 
   _setEventListeners() {
@@ -140,6 +144,13 @@ export default class Card {
     const deleteButton = this._element.querySelector(".places__delete-image");
     const imageElement = this._element.querySelector(".places__image");
     const formPlaces = document.querySelector("#form-places");
+    const closeButtonEnlarged = document.querySelector(
+      "#enlarged__close-button"
+    );
+
+    closeButtonEnlarged.addEventListener("click", () => {
+      this._closeButtonEnlarged();
+    });
 
     likeButton.addEventListener("click", () => {
       this._handleLikeClick();
