@@ -15,10 +15,9 @@ class FormValidator {
 
     this._setEventListeners();
   }
-
   _showInputError(inputElement, errorMessage) {
     const errorElement = this._formElement.querySelector(
-      `#${inputElement.id}_message`
+      `.${inputElement.classList[1]}__message`
     );
     inputElement.classList.add(this._config.inputErrorClass);
     errorElement.textContent = errorMessage;
@@ -27,7 +26,7 @@ class FormValidator {
 
   _hideInputError(inputElement) {
     const errorElement = this._formElement.querySelector(
-      `#${inputElement.id}_message`
+      `.${inputElement.classList[1]}__message`
     );
     inputElement.classList.remove(this._config.inputErrorClass);
     errorElement.textContent = "";
@@ -105,21 +104,21 @@ const configProfile = {
   inputSelector: ".form__input",
   submitButtonSelector: ".form__input_submit",
   inactiveButtonClass: "form__input_submit_disabled",
-  inputErrorClass: ".form__input_type_error",
-  errorClass: ".form__error_visible",
+  inputErrorClass: "form__message",
+  errorClass: "form__error_visible",
 };
 
 const configPlaces = {
   formSelector: ".form-places",
   inputSelector: ".form-places__input",
   submitButtonSelector: ".form-places__submit",
-  inactiveButtonClass: ".form-places__submit_disabled",
-  inputErrorClass: ".form-places__input_type_error",
-  errorClass: ".form-places__error_visible",
+  inactiveButtonClass: "form-places__submit_disabled",
+  inputErrorClass: "form-places__message",
+  errorClass: "form-places__error_visible",
 };
 
-const profileForm = document.querySelector(".form");
-const placesForm = document.querySelector(".form-places");
+const profileForm = document.getElementById("form");
+const placesForm = document.getElementById("form-places");
 
 const profileFormValidator = new FormValidator(configProfile, profileForm);
 profileFormValidator.enableValidation();
