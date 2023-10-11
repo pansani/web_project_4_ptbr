@@ -2,8 +2,7 @@
 
 import { overlayFalse, formFalse, closeButtonFalse } from "./utils.js";
 
-console.log("Hello from FormValidator.js(1)");
-class FormValidator {
+export class FormValidator {
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
@@ -125,30 +124,3 @@ class FormValidator {
     });
   }
 }
-
-const configProfile = {
-  formSelector: ".form",
-  inputSelector: ".form__input",
-  submitButtonSelector: ".form__input_submit",
-  inactiveButtonClass: "form__input_submit_disabled",
-  inputErrorClass: "form__message",
-  errorClass: "form__error_visible",
-};
-
-const configPlaces = {
-  formSelector: ".form-places",
-  inputSelector: ".form-places__input",
-  submitButtonSelector: ".form-places__submit",
-  inactiveButtonClass: "form-places__submit_disabled",
-  inputErrorClass: "form-places__message",
-  errorClass: "form-places__error_visible",
-};
-
-const profileForm = document.getElementById("form");
-const placesForm = document.getElementById("form-places");
-
-const profileFormValidator = new FormValidator(configProfile, profileForm);
-profileFormValidator.enableValidation();
-
-const placesFormValidator = new FormValidator(configPlaces, placesForm);
-placesFormValidator.enableValidation();

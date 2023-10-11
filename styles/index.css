@@ -6,7 +6,6 @@
 @import url("./elements/header/header__logo-img.css");
 
 @import url("./blocks/profile/profile.css");
-@import url("./elements/profile/profile__edit-img.css");
 @import url("./elements/profile/profile__square.css");
 @import url("./elements/profile/profile__rectangle.css");
 @import url("./elements/profile/profile__content.css");
@@ -50,7 +49,6 @@
 @import url("./modifers/form-places/form__places__error_visible.css");
 
 @import url("./elements/enlarged/enlarged__close-button.css");
-@import url("./elements/enlarged/enlarged__image-container.css");
 @import url("./elements/enlarged/enlarged__image.css");
 @import url("./modifers/enlarged/enlarged__image_active.css");
 @import url("./modifers/enlarged/enlarged__container_active.css");

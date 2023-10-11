@@ -91,14 +91,15 @@
       <img src="./styles/assets/Close Icon.png" class="form-places__close" />
       <div class="form-places__container">
         <h1 class="form-places__title">New Place</h1>
-        <form id="form-places" class="form-places">
+        <form id="form-places">
           <input
             type="text"
             class="form-places__input form-places__input_title"
             placeholder="Title"
           />
           <div
-            class="form-places__message form-places__title_message form-places__error_visible"
+            class="form-places__message form__message form-places__title_message form-places__error_visible"
+            id="inputTitle_message"
           ></div>
           <input
             type="text"
@@ -106,8 +107,8 @@
             placeholder="Image Url"
           />
           <div
-            class="form-places__message"
-            id="form-places__url_message form-places__error_visible"
+            class="form-places__message form__message"
+            id="inputUrl_message"
           ></div>
           <input
             type="submit"

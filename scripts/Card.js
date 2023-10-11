@@ -98,16 +98,14 @@ export default class Card {
     const enlargedImageContainer = document.querySelector(
       ".enlarged__image-container"
     );
-    const enlargedImage =
-      enlargedImageContainer.querySelector(".enlarged__image");
+    const enlargedImage = document.querySelector("#enlarged__image");
     const closeButtonEnlarged = document.querySelector(
-      ".enlarged__close-button"
+      "#enlarged__close-button"
     );
 
     enlargedImage.src = clickedImageUrl;
     enlargedImage.classList.add("enlarged__image_active");
     enlargedImage.classList.remove("enlarged__image");
-    enlargedImageContainer.classList.remove("enlarged__image-container");
     enlargedImageContainer.classList.add("enlarged__container_active");
     closeButtonEnlarged.classList.remove("enlarged__close-button");
     closeButtonEnlarged.classList.add("enlarged__close-button_active");
@@ -121,10 +119,9 @@ export default class Card {
     const enlargedImageContainer = document.querySelector(
       ".enlarged__image-container"
     );
-    const enlargedImage =
-      enlargedImageContainer.querySelector(".enlarged__image");
+    const enlargedImage = document.querySelector("#enlarged__image");
     const closeButtonEnlarged = document.querySelector(
-      ".enlarged__close-button"
+      "#enlarged__close-button"
     );
 
     enlargedImage.src = clickedImageUrl;
