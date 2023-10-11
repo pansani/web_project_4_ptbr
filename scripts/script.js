@@ -43,3 +43,5 @@ document.addEventListener("keydown", (event) => {
     closeByOverlay();
   }
 });
+
+console.log("Hello from script.js");

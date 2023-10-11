@@ -1,7 +1,8 @@
 /** @format */
 
-import { overlayFalse, formFalse, closeButtonFalse } from "./utils";
+import { overlayFalse, formFalse, closeButtonFalse } from "./utils.js";
 
+console.log("Hello from FormValidator.js(1)");
 class FormValidator {
   constructor(config, formElement) {
     this._config = config;
@@ -14,28 +15,40 @@ class FormValidator {
     );
 
     this._setEventListeners();
-    console.log("Construtor FormValidator chamado");
   }
   _showInputError(inputElement, errorMessage) {
-    const errorElement = this._formElement.querySelector(
-      `.${inputElement.classList[1]}__message`
+    const errorElements = this._formElement.querySelectorAll(".form__message");
+    const errorElement = Array.from(errorElements).find(
+      (element) => element.id === `${inputElement.name}_message`
     );
-    inputElement.classList.add(this._config.inputErrorClass);
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add(this._config.errorClass);
+
+    if (errorElement) {
+      inputElement.classList.add(this._config.inputErrorClass);
+      errorElement.textContent = errorMessage;
+      errorElement.classList.add(this._config.errorClass);
+    }
   }
 
   _hideInputError(inputElement) {
-    const errorElement = this._formElement.querySelector(
-      `.${inputElement.classList[1]}__message`
+    const errorElements = this._formElement.querySelectorAll(".form__message");
+    const errorElement = Array.from(errorElements).find(
+      (element) => element.id === `${inputElement.name}_message`
     );
-    inputElement.classList.remove(this._config.inputErrorClass);
-    errorElement.textContent = "";
-    errorElement.classList.remove(this._config.errorClass);
+
+    if (errorElement) {
+      inputElement.classList.remove(this._config.inputErrorClass);
+      errorElement.textContent = "";
+      errorElement.classList.remove(this._config.errorClass);
+    }
   }
 
   _checkInputValidity(inputElement) {
     const inputLength = inputElement.value.length;
+    console.log("this._formElement", this._formElement);
+    const errorElement = this._formElement.querySelector(
+      `.${inputElement.classList[1]}__message`
+    );
+    console.log("errorElement", errorElement);
 
     if (inputLength === 0) {
       this._showInputError(inputElement, "Por favor, preencha este campo");
@@ -90,24 +103,26 @@ class FormValidator {
   _setEventListeners() {
     const formSubmit = document.querySelector(".form__input_submit");
 
-    console.log("Antes de adicionar o event listener ao formSubmit");
-
     formSubmit.addEventListener("click", (evt) => {
       evt.preventDefault();
       this.handleSubmit(evt);
-      console.log("Event listener do formSubmit chamado");
     });
-
-    console.log("Adicionando event listener a um inputElement");
-
     this._inputElements.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
+        console.log("this._formElement", this._formElement);
+        const errorElements =
+          this._formElement.querySelectorAll(".form__message");
+        const errorElement = Array.from(errorElements).find((element) =>
+          element.classList.contains(`form__${inputElement.name}_message`)
+        );
+        console.log("errorElement", errorElement);
+        console.log("errorElements", errorElements);
+        console.log("inputElement.classList[1]", inputElement.classList[1]);
+
         this._checkInputValidity(inputElement);
         this._toggleButtonState();
       });
     });
-
-    console.log("Método _setEventListeners chamado");
   }
 }
 
