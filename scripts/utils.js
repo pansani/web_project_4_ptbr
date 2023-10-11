@@ -91,4 +91,5 @@ export const closeByOverlay = () => {
   formFalse();
   closeButtonFalse();
   closeFormDesative();
+  console.log("teste overlay");
 };
