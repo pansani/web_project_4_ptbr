@@ -81,9 +81,12 @@ export class FormValidator {
   handleSubmit(event) {
     event.preventDefault();
     const formValues = {};
-    this._inputElements.forEach((inputElement) => {
-      formValues[inputElement.name] = inputElement.value;
-    });
+
+    const inputNameElement = document.getElementById("inputName");
+    const inputSubtitleElement = document.getElementById("inputSubtitle");
+
+    formValues["inputName"] = inputNameElement.value;
+    formValues["inputSubtitle"] = inputSubtitleElement.value;
 
     const profileNameElement = document.getElementById("profileName");
     const profileSubtitleElement = document.getElementById("profileSubtitle");
@@ -94,18 +97,27 @@ export class FormValidator {
     overlayFalse();
     formFalse();
     closeButtonFalse();
+    console.log("profileName", profileNameElement);
+    console.log("profileSubtitle", profileSubtitleElement);
+    console.log("formValues", formValues);
+
+    this._inputElements = {
+      inputName: inputNameElement,
+      inputSubtitle: inputSubtitleElement,
+    };
   }
 
   enableValidation() {
     this._toggleButtonState();
   }
   _setEventListeners() {
-    const formSubmit = document.querySelector(".form__input_submit");
-
-    formSubmit.addEventListener("click", (evt) => {
+    const formElement = document.getElementById("form");
+    formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this.handleSubmit(evt);
+      console.log("formElement", formElement);
     });
+
     this._inputElements.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         console.log("this._formElement", this._formElement);
