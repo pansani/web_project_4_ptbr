@@ -16,10 +16,14 @@ export class FormValidator {
     this._setEventListeners();
   }
   _showInputError(inputElement, errorMessage) {
-    const errorElements = this._formElement.querySelectorAll(".form__message");
+    const errorElements = this._formElement.querySelectorAll(
+      ".form__message, .form-places__message"
+    );
+
     const errorElement = Array.from(errorElements).find(
       (element) => element.id === `${inputElement.name}_message`
     );
+    console.log("errorElement", errorElement);
 
     if (errorElement) {
       inputElement.classList.add(this._config.inputErrorClass);
@@ -29,7 +33,10 @@ export class FormValidator {
   }
 
   _hideInputError(inputElement) {
-    const errorElements = this._formElement.querySelectorAll(".form__message");
+    const errorElements = this._formElement.querySelectorAll(
+      ".form__message, .form-places__message"
+    );
+
     const errorElement = Array.from(errorElements).find(
       (element) => element.id === `${inputElement.name}_message`
     );
@@ -43,15 +50,9 @@ export class FormValidator {
 
   _checkInputValidity(inputElement) {
     const inputLength = inputElement.value.length;
-    console.log("this._formElement", this._formElement);
-    const errorElement = this._formElement.querySelector(
-      `.${inputElement.classList[1]}__message`
-    );
-    console.log("errorElement", errorElement);
 
     if (inputLength === 0) {
       this._showInputError(inputElement, "Por favor, preencha este campo");
-      console.log("teste inputerror");
     } else if (inputLength < 2) {
       this._showInputError(
         inputElement,
@@ -97,9 +98,6 @@ export class FormValidator {
     overlayFalse();
     formFalse();
     closeButtonFalse();
-    console.log("profileName", profileNameElement);
-    console.log("profileSubtitle", profileSubtitleElement);
-    console.log("formValues", formValues);
 
     this._inputElements = {
       inputName: inputNameElement,
@@ -115,18 +113,15 @@ export class FormValidator {
     formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this.handleSubmit(evt);
-      console.log("formElement", formElement);
     });
 
     this._inputElements.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
-        console.log("this._formElement", this._formElement);
-        const errorElements =
-          this._formElement.querySelectorAll(".form__message");
-        const errorElement = Array.from(errorElements).find((element) =>
-          element.classList.contains(`form__${inputElement.name}_message`)
+        const errorElements = this._formElement.querySelectorAll(
+          ".form__message, .form-places__message"
         );
-        console.log("errorElement", errorElement);
+
+        console.log("inputElement", inputElement);
         console.log("errorElements", errorElements);
         console.log("inputElement.classList[1]", inputElement.classList[1]);
 
