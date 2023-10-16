@@ -3,9 +3,6 @@
 .footer__content {
   width: 318px;
   height: 18px;
-  position: absolute;
-  left: 200px;
-  padding-bottom: 60px;
   font-size: 18px;
   color: #545454;
 }

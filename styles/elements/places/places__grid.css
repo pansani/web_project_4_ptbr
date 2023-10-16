@@ -1,7 +1,7 @@
 /** @format */
 
 .places__grid {
-  max-width: 880px;
+  max-width: 1200px;
   max-height: 743px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);

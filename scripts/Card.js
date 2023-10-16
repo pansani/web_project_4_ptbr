@@ -1,6 +1,5 @@
 /** @format */
 
-import { initialCards } from "./script.js";
 import {
   overlayTrue,
   overlayFalse,
@@ -9,11 +8,9 @@ import {
 } from "./utils.js";
 
 export default class Card {
-  constructor(data, index) {
+  constructor(data, cardArray) {
     this.data = data;
-    this.index = index;
-    this._initialCards = initialCards;
-    this.currentCardIndex = 0;
+    this.cardArray = cardArray;
   }
 
   _getTemplate() {
@@ -31,7 +28,8 @@ export default class Card {
     return cardElement;
   }
 
-  generateCard() {
+  generateCard(cardData) {
+    this.data = cardData;
     this._element = this._getTemplate();
     this._setEventListeners();
     this._handleDeleteClick(this._element);
@@ -56,8 +54,8 @@ export default class Card {
     const inputTitle = document.querySelector(".form-places__input_title");
     const inputUrl = document.querySelector(".form-places__input_url");
 
-    if (this.currentCardIndex < this._initialCards.length) {
-      this._initialCards[this.currentCardIndex] = {
+    if (this.cardArray && this.currentCardIndex < this.cardArray.length) {
+      this.cardArray[this.currentCardIndex] = {
         name: inputTitle.value,
         link: inputUrl.value,
       };
@@ -66,9 +64,6 @@ export default class Card {
 
       this.currentCardIndex++;
     }
-
-    console.log("Input Title:", inputTitle.value);
-    console.log("Input URL:", inputUrl.value);
 
     formAddDesative();
     closeFormDesative();

@@ -31,12 +31,31 @@ export const initialCards = [
   },
 ];
 
+const formPlaces = document.querySelector(".form-places");
 const placesContainer = document.querySelector(".places__grid");
 
-initialCards.forEach((cardData, index) => {
-  const card = new Card(cardData, index);
-  const cardElement = card.generateCard();
-  placesContainer.appendChild(cardElement);
+formPlaces.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+
+  const inputTitle = document.querySelector(".form-places__input_title").value;
+  const inputUrl = document.querySelector(".form-places__input_url").value;
+
+  const newCardData = {
+    name: inputTitle,
+    link: inputUrl,
+  };
+
+  const newCard = new Card(newCardData);
+
+  const newCardElement = newCard.generateCard(newCardData);
+
+  placesContainer.appendChild(newCardElement);
+});
+
+initialCards.forEach((cardData) => {
+  const newCard = new Card(cardData);
+  const newCardElement = newCard.generateCard(cardData);
+  placesContainer.appendChild(newCardElement);
 });
 
 document.addEventListener("keydown", (event) => {

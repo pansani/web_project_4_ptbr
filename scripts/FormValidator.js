@@ -103,6 +103,8 @@ export class FormValidator {
       inputName: inputNameElement,
       inputSubtitle: inputSubtitleElement,
     };
+
+    console.log("teste envio form");
   }
 
   enableValidation() {
