@@ -145,6 +145,13 @@ export default class Card {
       "#enlarged__close-button"
     );
 
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" || event.key === "Esc") {
+        this._closeButtonEnlarged();
+        console.log("close esc enlarged");
+      }
+    });
+
     closeButtonEnlarged.addEventListener("click", () => {
       this._closeButtonEnlarged();
     });
