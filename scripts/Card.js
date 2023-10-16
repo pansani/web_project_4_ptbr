@@ -34,6 +34,7 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
+    this._handleDeleteClick(this._element);
     return this._element;
   }
 
@@ -83,13 +84,13 @@ export default class Card {
     }
   }
 
-  _handleDeleteClick() {
-    this._element
+  _handleDeleteClick(cardElement) {
+    cardElement
       .querySelector(".places__delete-image")
       .addEventListener("click", () => {
-        this._element.remove();
-        this._overlayTrue();
+        cardElement.remove();
       });
+    console.log("remove card");
   }
 
   _handleImageClick() {
