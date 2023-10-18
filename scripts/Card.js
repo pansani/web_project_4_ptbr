@@ -65,6 +65,9 @@ export default class Card {
       this.currentCardIndex++;
     }
 
+    const footer = document.querySelector(".footer__content");
+    footer.classList.add("footer__card_added");
+
     formAddDesative();
     closeFormDesative();
     overlayFalse();
